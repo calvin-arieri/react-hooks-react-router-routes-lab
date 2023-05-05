@@ -1,30 +1,25 @@
-// ./src/components/MoviesList.js
-// .src/components/MoviesPage.js
 import React from "react";
-// import the custom `useRouteMatch` hook from React Router
-import { Route, useRouteMatch } from "react-router-dom";
-import MoviesList from "./MoviesList";
-// import the MovieShow component
-import MovieShow from "./MovieShow";
+import { movies } from "../data";
 
-function MoviesPage({ movies }) {
-  // useRouteMatch returns a special object with information about
-  // the currently matched route
-  const match = useRouteMatch();
-  console.log(match);
+const Movies = () => {
+  const movieItems = movies.map((movie) => (
+    <div key={movie.title}>
+      <h2>{movie.title}</h2>
+      <p>Runtime: {movie.time} min.</p>
+      <ul>
+        {movie.genres.map((genre) => (
+          <li key={genre}>{genre}</li>
+        ))}
+      </ul>
+    </div>
+  ));
 
   return (
     <div>
-      <MoviesList movies={movies} />
-      {/* 
-        we can use the current URL from the `match` object as part of the path;
-        this will generate a url like "/movies/:movieId"
-      */}
-      <Route path={`${match.url}/:movieId`}>
-        <MovieShow />
-      </Route>
+      <h1>Movies Page</h1>
+      {movieItems}
     </div>
   );
-}
+};
 
-export default MoviesPage;
+export default Movies;

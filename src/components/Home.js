@@ -1,12 +1,9 @@
-// ./src/components/MovieShow.js
 import React from "react";
 
-function MovieShow() {
-  return (
-    <div>
-      <h3>Movies Show Component!</h3>
-    </div>
-  );
+function Home() {
+  return <div>
+    <h1>Home Page</h1>
+  </div>;
 }
 
-export default MovieShow;
+export default Home;
