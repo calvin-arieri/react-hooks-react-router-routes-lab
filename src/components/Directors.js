@@ -1,24 +1,20 @@
 import React from "react";
-import { directors } from "../data";
+import { Route, useRouteMatch } from "react-router-dom";
+import MoviesList from "./MoviesList";
+import MovieShow from "./MovieShow";
 
-const Directors = () => {
-  const directorItems = directors.map((director) => (
-    <div key={director.name}>
-      <h2>{director.name}</h2>
-      <ul>
-        {director.movies.map((movie) => (
-          <li key={movie}>{movie}</li>
-        ))}
-      </ul>
-    </div>
-  ));
+function MoviesPage({ movies }) {
+  const match = useRouteMatch();
 
   return (
     <div>
-      <h1>Directors Page</h1>
-      {directorItems}
+      <MoviesList movies={movies} />
+      <Route path={`${match.url}/:movieId`}>
+        {/* adding the movies object as a prop to MovieShow */}
+        <MovieShow movies={movies} />
+      </Route>
     </div>
   );
-};
+}
 
-export default Directors;
+export default MoviesPage;
